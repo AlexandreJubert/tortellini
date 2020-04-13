@@ -109,12 +109,12 @@ class ini final {
 		struct case_insensitive_compare {
 			bool operator()(const unsigned char &l, const unsigned char &r) const {
 				// < for map
-				return std::tolower(l) < std::tolower(r);
+				return ::tolower(l) < ::tolower(r);
 			}
 
 			inline static bool compare(const unsigned char &l, const unsigned char &r) {
 				// == for OOB calls
-				return std::tolower(l) == std::tolower(r);
+				return ::tolower(l) == ::tolower(r);
 			}
 		};
 
@@ -315,13 +315,13 @@ private:
 
 	static inline void ltrim(std::string &s) {
 		s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](int ch) {
-			return !std::isspace(ch);
+			return !::isspace(ch);
 		}));
 	}
 
 	static inline void rtrim(std::string &s) {
 		s.erase(std::find_if(s.rbegin(), s.rend(), [](int ch) {
-			return !std::isspace(ch);
+			return !::isspace(ch);
 		}).base(), s.end());
 	}
 
